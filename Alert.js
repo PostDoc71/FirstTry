@@ -30,10 +30,11 @@ btn.onclick = function() {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     bhmodal.style.display = "none";
+    return;
 }
 
 function getDictionary(word) {
-    window.open("https://www.merriam-webster.com/dictionary/" + word, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=50,left=700,width=750,height=600");
+    window.open("https://www.merriam-webster.com/dictionary/" + word, "dictName", "toolbar=yes,scrollbars=yes,resizable=yes,top=50,left=700,width=750,height=600");
     return;
 }
   
@@ -41,6 +42,7 @@ function getDictionary(word) {
 window.onclick = function(event) {
   if (event.target == bhmodal) {
     bhmodal.style.display = "none";
+    return;
   }
 }
 

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+
+    COOKIE LESSON 
+    Good explanation at https://javascript.info/cookie
+    <script>
+
+//----------------------------------------------------------
+
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function setCookie(name, value, options = {}) {
+
+options = {
+  path: '/',
+  // add other defaults here if necessary
+  ...options
+};
+
+if (options.expires instanceof Date) {
+  options.expires = options.expires.toUTCString();
+}
+
+let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+for (let optionKey in options) {
+  updatedCookie += "; " + optionKey;
+  let optionValue = options[optionKey];
+  if (optionValue !== true) {
+    updatedCookie += "=" + optionValue;
+  }
+}
+
+document.cookie = updatedCookie;
+}
+
+// Example of use:
+setCookie('user', 'John', {secure: true, 'max-age': 3600});
+
+//----------------------------------------------------------
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+// returns the cookie with the given name,
+// or undefined if not found
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+//----------------------------------------------------------
+
+function checkCookie() {
+  let user = getCookie("username");
+  if (user != "") {
+    alert("Welcome again " + user);
+  } else {
+     user = prompt("Please enter your name:","");
+     if (user != "" && user != null) {
+       setCookie("username", user, 30);
+     }
+  }
+}
+
+//----------------------------------------------------------
+
+function deleteCookie(name) {
+  setCookie(name, "", {
+    'max-age': -1
+  })
+}
+
+//----------------------------------------------------------
+
+</script>
+</head>
+
+<body onload="checkCookie()"></body>
+
+
+    <!-- <button id="browse" onclick="myfunction()"> Check</button>
+    <p id="result">
+    </p>
+    <script>
+       var a;
+       var answer = document.getElementById("result"); 
+       function devicePhone() {
+          if (navigator.userAgent.match(/Android/i)
+          || navigator.userAgent.match(/webOS/i)
+          || navigator.userAgent.match(/iPhone/i)
+          || navigator.userAgent.match(/iPad/i)
+          || navigator.userAgent.match(/iPod/i)
+          || navigator.userAgent.match(/BlackBerry/i)
+          || navigator.userAgent.match(/Windows Phone/i)) {
+             return true ;
+          } else {
+             return false ;
+          }
+       }
+    </script>

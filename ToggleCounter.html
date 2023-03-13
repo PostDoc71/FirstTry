@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+  <button id="crick">Crick me for supplies</button>
+  <p id="counter" hidden>Now you see me. Click again to make me disappear.</p>
+
+  <script>
+    let show = false;
+
+    document.getElementById("crick").onclick = function () {
+      show = !show;
+      show ? document.getElementById("counter").removeAttribute("hidden") 
+            : document.getElementById("counter").setAttribute("hidden", "");
+      return;
+    }
+
+  </script>
+
+</body>
+
+</html>
