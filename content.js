@@ -33,7 +33,6 @@ function setUpHintDiv() {
         <td id="metastats3">Genius level:&nbsp<br>Total pangrams:&nbsp<br>Pangrams Found:&nbsp</td>
         <td id="metastats4"></td>
     </table>
-    <button id="btn1">Metastat2<button><button id="btn2">Metastat4<button>
     `;
 return hintDiv;
 }
